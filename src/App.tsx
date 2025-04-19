@@ -3,29 +3,43 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Typewriter from './components/Typewriter';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-primary text-white">
-        <nav className="bg-secondary p-4">
-          <div className="container mx-auto flex justify-between items-center">
-            <Link to="/" className="text-2xl font-bold text-accent">Victor</Link>
-            <div className="space-x-4">
-              <Link to="/" className="hover:text-accent transition-colors">Início</Link>
-              <Link to="/projects" className="hover:text-accent transition-colors">Projetos</Link>
-              <Link to="/contact" className="hover:text-accent transition-colors">Contato</Link>
+      <div className="min-h-screen text-white relative">
+        <div 
+          className="fixed inset-0 z-0 opacity-20"
+          style={{
+            backgroundImage: 'url(https://i.pinimg.com/originals/d1/b2/1e/d1b21e9f9c2773c4577c947065a0fe62.gif)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        <div className="relative z-10">
+          <nav className="bg-secondary/80 backdrop-blur-sm p-4">
+            <div className="container mx-auto flex justify-between items-center">
+              <Link to="/" className="text-2xl font-bold">
+                <Typewriter text="七転び八起き" />
+              </Link>
+              <div className="space-x-4">
+                <Link to="/" className="hover:text-accent transition-colors">Início</Link>
+                <Link to="/projects" className="hover:text-accent transition-colors">Projetos</Link>
+                <Link to="/contact" className="hover:text-accent transition-colors">Contato</Link>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
 
-        <main className="container mx-auto p-4">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
+          <main className="container mx-auto p-4">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </main>
+        </div>
       </div>
     </Router>
   );

@@ -7,8 +7,11 @@ module.exports = {
     extend: {
       colors: {
         primary: '#1a1a1a',
-        secondary: '#2d2d2d',
-        accent: '#7289da',
+        secondary: 'rgba(45, 45, 45, 0.8)',
+        accent: '#ff6b6b',
+      },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },
