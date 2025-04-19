@@ -3,46 +3,53 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Entrance from './pages/Entrance';
 import Typewriter from './components/Typewriter';
+import ParticlesBackground from './components/ParticlesBackground';
+import { AudioProvider } from './contexts/AudioContext';
+import './App.css';
+
+const Portfolio: React.FC = () => {
+  return (
+    <div className="min-h-screen text-white relative overflow-x-hidden">
+      <ParticlesBackground />
+      
+      <div className="relative z-10">
+        <nav className="fixed top-0 w-full bg-black/50 backdrop-blur-sm p-4 border-b border-green-500/20">
+          <div className="container mx-auto flex justify-between items-center">
+            <Link to="/portfolio" className="text-2xl font-bold text-green-500">
+              <Typewriter text="七転び八起き" />
+            </Link>
+            <div className="space-x-4">
+              <Link to="/portfolio" className="hover:text-green-500 transition-colors">Início</Link>
+              <Link to="/portfolio/projects" className="hover:text-green-500 transition-colors">Projetos</Link>
+              <Link to="/portfolio/contact" className="hover:text-green-500 transition-colors">Contato</Link>
+            </div>
+          </div>
+        </nav>
+
+        <main className="pt-20">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+      </div>
+    </div>
+  );
+};
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div className="min-h-screen text-white relative">
-        <div 
-          className="fixed inset-0 z-0"
-          style={{
-            backgroundImage: 'url(https://i.pinimg.com/originals/f0/35/27/f0352785c140b9358af11fd76b7a7c4c.gif)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            filter: 'brightness(0.2)'
-          }}
-        />
-        <div className="relative z-10">
-          <nav className="bg-japanese-black/80 backdrop-blur-sm p-4 border-b border-japanese-red/20">
-            <div className="container mx-auto flex justify-between items-center">
-              <Link to="/" className="text-2xl font-bold">
-                <Typewriter text="七転び八起き" />
-              </Link>
-              <div className="space-x-4">
-                <Link to="/" className="hover:text-japanese-red transition-colors">Início</Link>
-                <Link to="/projects" className="hover:text-japanese-red transition-colors">Projetos</Link>
-                <Link to="/contact" className="hover:text-japanese-red transition-colors">Contato</Link>
-              </div>
-            </div>
-          </nav>
-
-          <main className="container mx-auto p-4">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </main>
-        </div>
-      </div>
-    </Router>
+    <AudioProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Entrance />} />
+          <Route path="/portfolio/*" element={<Portfolio />} />
+        </Routes>
+      </Router>
+    </AudioProvider>
   );
 };
 

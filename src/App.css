@@ -1,0 +1,150 @@
+.app {
+  position: relative;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #00ff87, #60efff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #888;
+}
+
+.section {
+  margin-bottom: 4rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #00ff87;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content > * {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Reset e estilos base */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  transition: opacity 2s ease-in-out;
+  opacity: 1;
+}
+
+body.fade-out {
+  opacity: 0;
+}
+
+/* Animação do cursor do Typewriter */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Esconder a barra de scroll mas manter a funcionalidade */
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* Para IE e Edge */
+* {
+  -ms-overflow-style: none;
+}
+
+/* Estilo para links ativos */
+nav a.active {
+  color: #00ff87;
+  border-bottom: 2px solid #00ff87;
+}
+
+/* Estilo para hover dos links */
+nav a:hover {
+  color: #00ff87;
+  transition: color 0.3s ease;
+}
+
+/* Gradientes e cores */
+.bg-gradient-green {
+  background: linear-gradient(135deg, rgba(0, 255, 135, 0.1), rgba(0, 255, 135, 0.05));
+}
+
+.border-gradient-green {
+  border-image: linear-gradient(to right, rgba(0, 255, 135, 0.5), rgba(0, 255, 135, 0.1)) 1;
+}
+
+/* Animação de fade para a entrada */
+body {
+  transition: opacity 1s ease-in-out;
+}
+
+body.fade-out {
+  opacity: 0;
+} 

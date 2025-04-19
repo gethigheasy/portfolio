@@ -101,20 +101,20 @@ const Home: React.FC = () => {
     <div className="flex flex-col items-center justify-center min-h-[80vh] p-4">
       {loading ? (
         <div className="flex items-center space-x-2">
-          <div className="w-4 h-4 bg-accent rounded-full animate-bounce"></div>
-          <div className="w-4 h-4 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-          <div className="w-4 h-4 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+          <div className="w-4 h-4 bg-green-500 rounded-full animate-bounce"></div>
+          <div className="w-4 h-4 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          <div className="w-4 h-4 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
         </div>
       ) : (
         <>
           {discordData && (
-            <div className="flex flex-col items-center space-y-8 max-w-2xl w-full">
+            <div className="flex flex-col items-center space-y-8 max-w-3xl w-full">
               <div className="relative group">
-                <div className="relative w-32 h-32">
+                <div className="relative w-40 h-40">
                   <img
                     src={`https://cdn.discordapp.com/avatars/936545483378290708/${discordData.discord_user.avatar}.png`}
                     alt="Avatar"
-                    className="w-full h-full rounded-full transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-full rounded-full transition-transform duration-300 group-hover:scale-110 border-2 border-green-500"
                   />
                   {discordData.discord_user.avatar_decoration_data && (
                     <img
@@ -124,51 +124,51 @@ const Home: React.FC = () => {
                       style={{ mixBlendMode: 'normal' }}
                     />
                   )}
-                  <div className={`absolute bottom-0 right-0 w-4 h-4 rounded-full ${getStatusColor(discordData.discord_status)} border-2 border-primary`}></div>
+                  <div className={`absolute bottom-0 right-0 w-4 h-4 rounded-full ${getStatusColor(discordData.discord_status)} border-2 border-black`}></div>
                 </div>
               </div>
               
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
                 Victor
               </h1>
               
               {discordData.activities && discordData.activities.length > 0 && (
-                <div className="bg-secondary p-6 rounded-xl w-full max-w-md space-y-4 transform transition-all duration-300 hover:scale-105">
+                <div className="bg-black/40 p-8 rounded-xl w-full max-w-2xl space-y-4 transform transition-all duration-300 hover:scale-105 border border-green-500/20 backdrop-blur-sm">
                   {discordData.activities.map((activity, index) => (
                     activity.type !== 4 && (
-                      <div key={index} className="space-y-2">
-                        <div className="flex items-center space-x-2">
+                      <div key={index} className="space-y-3">
+                        <div className="flex items-center space-x-3">
                           {activity.assets?.large_image && (
                             <img
                               src={getActivityImage(activity)}
                               alt={activity.assets.large_text || activity.name}
-                              className="w-8 h-8 rounded"
+                              className="w-10 h-10 rounded-lg border border-green-500/30"
                             />
                           )}
-                          <p className="text-accent font-medium">{activity.name}</p>
+                          <p className="text-green-400 font-medium text-lg">{activity.name}</p>
                         </div>
                         {activity.name === 'Spotify' && discordData.spotify ? (
                           <>
-                            <p className="text-gray-300">{discordData.spotify.song}</p>
-                            <p className="text-gray-400">{discordData.spotify.artist}</p>
-                            <p className="text-gray-400 text-sm">{discordData.spotify.album}</p>
+                            <p className="text-green-300 text-lg">{discordData.spotify.song}</p>
+                            <p className="text-green-400/80">{discordData.spotify.artist}</p>
+                            <p className="text-green-500/60">{discordData.spotify.album}</p>
                           </>
                         ) : (
                           <>
                             {activity.details && (
-                              <p className="text-gray-300">{activity.details}</p>
+                              <p className="text-green-300">{activity.details}</p>
                             )}
                             {activity.state && (
-                              <p className="text-gray-400">{activity.state}</p>
+                              <p className="text-green-400/80">{activity.state}</p>
                             )}
                           </>
                         )}
                         {activity.assets?.small_image && (
-                          <div className="flex items-center space-x-2 text-sm text-gray-400">
+                          <div className="flex items-center space-x-2 text-sm text-green-400/60">
                             <img
                               src={getSmallImage(activity)}
                               alt={activity.assets.small_text || ''}
-                              className="w-4 h-4 rounded"
+                              className="w-5 h-5 rounded border border-green-500/30"
                             />
                             <span>{activity.assets.small_text}</span>
                           </div>

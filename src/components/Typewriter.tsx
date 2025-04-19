@@ -5,31 +5,26 @@ interface TypewriterProps {
   delay?: number;
 }
 
-const Typewriter: React.FC<TypewriterProps> = ({ text, delay = 100 }) => {
+const Typewriter: React.FC<TypewriterProps> = ({ text, delay = 150 }) => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
-    if (currentIndex < text.length && isTyping) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
+    if (currentIndex < text.length) {
+      const timer = setTimeout(() => {
+        setDisplayText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
       }, delay);
 
-      return () => clearTimeout(timeout);
-    } else if (currentIndex === text.length) {
-      setIsTyping(false);
+      return () => clearTimeout(timer);
     }
-  }, [currentIndex, text, delay, isTyping]);
+  }, [currentIndex, text, delay]);
 
   return (
-    <div className="relative">
-      <span className="text-japanese-red font-bold text-2xl">{displayText}</span>
-      {isTyping && (
-        <span className="animate-blink text-japanese-red">|</span>
-      )}
-    </div>
+    <span className="font-mono text-green-400">
+      {displayText}
+      <span className="animate-blink">|</span>
+    </span>
   );
 };
 
