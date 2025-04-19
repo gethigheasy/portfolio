@@ -20,6 +20,10 @@ interface DiscordData {
       large_text?: string;
       small_text?: string;
     };
+    album_art_url?: string;
+    album?: string;
+    artist?: string;
+    song?: string;
   }>;
   discord_status: string;
 }
@@ -65,6 +69,10 @@ const Home: React.FC = () => {
     if (activity.assets.large_image.startsWith('mp:external/')) {
       const url = activity.assets.large_image.replace('mp:external/', '');
       return `https://media.discordapp.net/external/${url}`;
+    }
+
+    if (activity.name === 'Spotify') {
+      return activity.album_art_url;
     }
     
     return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
@@ -136,6 +144,13 @@ const Home: React.FC = () => {
                         )}
                         {activity.state && (
                           <p className="text-gray-400">{activity.state}</p>
+                        )}
+                        {activity.name === 'Spotify' && (
+                          <>
+                            <p className="text-gray-300">{activity.song}</p>
+                            <p className="text-gray-400">{activity.artist}</p>
+                            <p className="text-gray-400 text-sm">{activity.album}</p>
+                          </>
                         )}
                         {activity.assets?.small_image && (
                           <div className="flex items-center space-x-2 text-sm text-gray-400">
