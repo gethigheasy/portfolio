@@ -10,16 +10,17 @@ const App: React.FC = () => {
     <Router>
       <div className="min-h-screen text-white relative">
         <div 
-          className="fixed inset-0 z-0 opacity-20"
+          className="fixed inset-0 z-0"
           style={{
             backgroundImage: 'url(https://i.pinimg.com/originals/d1/b2/1e/d1b21e9f9c2773c4577c947065a0fe62.gif)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: 'no-repeat',
+            filter: 'brightness(0.3)'
           }}
         />
         <div className="relative z-10">
-          <nav className="bg-secondary/80 backdrop-blur-sm p-4">
+          <nav className="bg-black/50 backdrop-blur-sm p-4">
             <div className="container mx-auto flex justify-between items-center">
               <Link to="/" className="text-2xl font-bold">
                 <Typewriter text="七転び八起き" />
