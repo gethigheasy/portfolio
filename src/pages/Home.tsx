@@ -20,19 +20,19 @@ interface DiscordData {
       large_text?: string;
       small_text?: string;
     };
-    spotify?: {
-      album: string;
-      album_art_url: string;
-      artist: string;
-      song: string;
-      track_id: string;
-      timestamps: {
-        start: number;
-        end: number;
-      };
-    };
   }>;
   discord_status: string;
+  spotify?: {
+    album: string;
+    album_art_url: string;
+    artist: string;
+    song: string;
+    track_id: string;
+    timestamps: {
+      start: number;
+      end: number;
+    };
+  };
 }
 
 const Home: React.FC = () => {
@@ -78,8 +78,9 @@ const Home: React.FC = () => {
       return `https://media.discordapp.net/external/${url}`;
     }
 
-    if (activity.name === 'Spotify' && activity.spotify?.album_art_url) {
-      return activity.spotify.album_art_url;
+    if (activity.name === 'Spotify' && activity.assets?.large_image) {
+      const imageId = activity.assets.large_image.replace('spotify:', '');
+      return `https://i.scdn.co/image/${imageId}`;
     }
     
     return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
@@ -152,11 +153,11 @@ const Home: React.FC = () => {
                         {activity.state && (
                           <p className="text-gray-400">{activity.state}</p>
                         )}
-                        {activity.name === 'Spotify' && activity.spotify && (
+                        {activity.name === 'Spotify' && discordData.spotify && (
                           <>
-                            <p className="text-gray-300">{activity.spotify.song}</p>
-                            <p className="text-gray-400">{activity.spotify.artist}</p>
-                            <p className="text-gray-400 text-sm">{activity.spotify.album}</p>
+                            <p className="text-gray-300">{discordData.spotify.song}</p>
+                            <p className="text-gray-400">{discordData.spotify.artist}</p>
+                            <p className="text-gray-400 text-sm">{discordData.spotify.album}</p>
                           </>
                         )}
                         {activity.assets?.small_image && (
