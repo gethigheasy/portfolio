@@ -12,7 +12,7 @@ const App: React.FC = () => {
         <div 
           className="fixed inset-0 z-0"
           style={{
-            backgroundImage: 'url(https://i.pinimg.com/originals/d1/b2/1e/d1b21e9f9c2773c4577c947065a0fe62.gif)',
+            backgroundImage: 'url(https://i.pinimg.com/originals/f0/35/27/f0352785c140b9358af11fd76b7a7c4c.gif)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
