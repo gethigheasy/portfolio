@@ -20,10 +20,17 @@ interface DiscordData {
       large_text?: string;
       small_text?: string;
     };
-    album_art_url?: string;
-    album?: string;
-    artist?: string;
-    song?: string;
+    spotify?: {
+      album: string;
+      album_art_url: string;
+      artist: string;
+      song: string;
+      track_id: string;
+      timestamps: {
+        start: number;
+        end: number;
+      };
+    };
   }>;
   discord_status: string;
 }
@@ -71,8 +78,8 @@ const Home: React.FC = () => {
       return `https://media.discordapp.net/external/${url}`;
     }
 
-    if (activity.name === 'Spotify') {
-      return activity.album_art_url;
+    if (activity.name === 'Spotify' && activity.spotify?.album_art_url) {
+      return activity.spotify.album_art_url;
     }
     
     return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
@@ -145,11 +152,11 @@ const Home: React.FC = () => {
                         {activity.state && (
                           <p className="text-gray-400">{activity.state}</p>
                         )}
-                        {activity.name === 'Spotify' && (
+                        {activity.name === 'Spotify' && activity.spotify && (
                           <>
-                            <p className="text-gray-300">{activity.song}</p>
-                            <p className="text-gray-400">{activity.artist}</p>
-                            <p className="text-gray-400 text-sm">{activity.album}</p>
+                            <p className="text-gray-300">{activity.spotify.song}</p>
+                            <p className="text-gray-400">{activity.spotify.artist}</p>
+                            <p className="text-gray-400 text-sm">{activity.spotify.album}</p>
                           </>
                         )}
                         {activity.assets?.small_image && (
