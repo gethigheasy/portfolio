@@ -57,7 +57,7 @@ const ParticlesBackground: React.FC = () => {
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 255, 135, ${particle.opacity})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
         ctx.fill();
       });
 

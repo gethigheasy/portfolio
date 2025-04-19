@@ -15,15 +15,15 @@ const Portfolio: React.FC = () => {
       <ParticlesBackground />
       
       <div className="relative z-10">
-        <nav className="fixed top-0 w-full bg-black/50 backdrop-blur-sm p-4 border-b border-green-500/20">
+        <nav className="fixed top-0 w-full bg-black/50 backdrop-blur-sm p-4 border-b border-white/10">
           <div className="container mx-auto flex justify-between items-center">
-            <Link to="/portfolio" className="text-2xl font-bold text-green-500">
+            <Link to="/portfolio" className="text-2xl font-bold text-white">
               <Typewriter text="七転び八起き" />
             </Link>
             <div className="space-x-4">
-              <Link to="/portfolio" className="hover:text-green-500 transition-colors">Início</Link>
-              <Link to="/portfolio/projects" className="hover:text-green-500 transition-colors">Projetos</Link>
-              <Link to="/portfolio/contact" className="hover:text-green-500 transition-colors">Contato</Link>
+              <Link to="/portfolio" className="hover:text-white/80 transition-colors">Início</Link>
+              <Link to="/portfolio/projects" className="hover:text-white/80 transition-colors">Projetos</Link>
+              <Link to="/portfolio/contact" className="hover:text-white/80 transition-colors">Contato</Link>
             </div>
           </div>
         </nav>

@@ -21,7 +21,7 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay = 150 }) => {
   }, [currentIndex, text, delay]);
 
   return (
-    <span className="font-mono text-green-400">
+    <span className="font-mono text-white">
       {displayText}
       <span className="animate-blink">|</span>
     </span>
