@@ -147,17 +147,20 @@ const Home: React.FC = () => {
                           )}
                           <p className="text-accent font-medium">{activity.name}</p>
                         </div>
-                        {activity.details && (
-                          <p className="text-gray-300">{activity.details}</p>
-                        )}
-                        {activity.state && (
-                          <p className="text-gray-400">{activity.state}</p>
-                        )}
-                        {activity.name === 'Spotify' && discordData.spotify && (
+                        {activity.name === 'Spotify' && discordData.spotify ? (
                           <>
                             <p className="text-gray-300">{discordData.spotify.song}</p>
                             <p className="text-gray-400">{discordData.spotify.artist}</p>
                             <p className="text-gray-400 text-sm">{discordData.spotify.album}</p>
+                          </>
+                        ) : (
+                          <>
+                            {activity.details && (
+                              <p className="text-gray-300">{activity.details}</p>
+                            )}
+                            {activity.state && (
+                              <p className="text-gray-400">{activity.state}</p>
+                            )}
                           </>
                         )}
                         {activity.assets?.small_image && (
