@@ -112,7 +112,7 @@ const Home: React.FC = () => {
               <div className="relative group">
                 <div className="relative w-40 h-40">
                   <img
-                    src={`https://cdn.discordapp.com/avatars/936545483378290708/${discordData.discord_user.avatar}.png`}
+                    src={`https://cdn.discordapp.com/avatars/936545483378290708/${discordData.discord_user.avatar}${discordData.discord_user.avatar.startsWith('a_') ? '.gif' : '.png'}`}
                     alt="Avatar"
                     className="w-full h-full rounded-full transition-transform duration-300 group-hover:scale-110 border-2 border-white/50"
                   />
