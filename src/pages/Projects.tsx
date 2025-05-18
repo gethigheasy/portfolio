@@ -29,24 +29,50 @@ const Projects: React.FC = () => {
       ],
       techStack: ['React', 'TailwindCSS', 'TypeScript'],
       link: 'https://github.com/gethigheasy/todolist-react'
+    },
+    {
+      title: 'makehasu',
+      description: 'Um projeto open source de destaque, focado em automação, integração e utilidades para comunidades Discord. Repositório principal do bot makehasu.',
+      longDescription: 'O makehasu é um bot de Discord robusto, com múltiplas funcionalidades para servidores, automação de tarefas, integração com APIs e comandos customizados.',
+      tags: ['Discord', 'Bot', 'Open Source'],
+      features: [
+        'Automação de tarefas',
+        'Comandos customizados',
+        'Integração com múltiplas APIs',
+        'Fácil de configurar e escalar'
+      ],
+      techStack: ['TypeScript', 'Node.js', 'Discord.js'],
+      link: 'https://github.com/Vordlex/makehasu'
+    },
+    {
+      title: 'makehasu-website',
+      description: 'Website e painel de controle do bot makehasu, com dashboard para administração e estatísticas em tempo real.',
+      longDescription: 'Sou desenvolvedor principal e contribuidor deste projeto, que é o painel web do bot makehasu. O bot está presente em dois servidores, totalizando quase 25 mil membros, e oferece administração, estatísticas e integração direta com o Discord.',
+      tags: ['Discord', 'Bot', 'Painel', 'Dashboard'],
+      features: [
+        'Dashboard de administração',
+        'Estatísticas em tempo real',
+        'Gerenciamento de permissões',
+        'Integração total com o Discord'
+      ],
+      techStack: ['TypeScript', 'React', 'Node.js', 'Discord.js'],
+      link: 'https://github.com/gethigheasy/makehasu-website'
     }
   ];
 
   return (
     <div className="container mx-auto px-4 py-16">
-      <h2 className="text-4xl font-bold text-center mb-12 text-white">
-        Meus Projetos
-      </h2>
+      <h2 className="text-5xl font-extrabold text-center mb-12 text-white drop-shadow-lg">Meus Projetos</h2>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:transform hover:scale-[1.02] transition-all duration-300"
+            className="bg-[#23262b] border border-[#3a3f47] rounded-3xl p-14 shadow-2xl flex flex-col gap-8 min-h-[420px] justify-between transition-all duration-300 hover:scale-[1.03]"
           >
-            <h3 className="text-2xl font-semibold text-white mb-6">{project.title}</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
 
-            <p className="text-gray-300 mb-6">{project.description}</p>
+            <p className="text-gray-300 mb-4 text-lg">{project.description}</p>
 
             <div className="mb-6">
               <h4 className="text-white font-semibold mb-3">Recursos Principais:</h4>
@@ -62,11 +88,11 @@ const Projects: React.FC = () => {
 
             <div className="mb-6">
               <h4 className="text-white font-semibold mb-3">Stack Tecnológica:</h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3 mb-8">
                 {project.techStack.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="px-3 py-1 bg-white/5 text-white rounded-full text-sm"
+                    className="px-4 py-1 bg-[#20232a] text-[#00ff87] rounded-full text-base font-semibold border border-[#363b42]"
                   >
                     {tech}
                   </span>
@@ -74,14 +100,16 @@ const Projects: React.FC = () => {
               </div>
             </div>
 
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 text-white rounded-lg transition-colors duration-300"
-            >
-              Ver no GitHub
-            </a>
+            <div className="flex justify-end items-center mt-8">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#20232a] hover:bg-[#23262b] text-white rounded-xl border border-[#363b42] font-bold text-lg transition-colors duration-300 shadow min-w-[220px] justify-center"
+              >
+                Ver no GitHub
+              </a>
+            </div>
           </div>
         ))}
       </div>

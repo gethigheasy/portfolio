@@ -1,8 +1,8 @@
 .app {
   position: relative;
   min-height: 100vh;
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: #181a1b;
+  color: #e5e7eb;
 }
 
 .content {
@@ -21,9 +21,10 @@
 .title {
   font-size: 3.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, #00ff87, #60efff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: none;
+  color: #e5e7eb;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
 }
 
 .subtitle {
@@ -34,8 +35,9 @@
 .section {
   margin-bottom: 4rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  background: #20232a;
+  border-radius: 16px;
+  border: 1.5px solid #363b42;
   backdrop-filter: blur(10px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
@@ -50,13 +52,19 @@
 .section h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #00ff87;
+  color: #e5e7eb;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+}
+
+.projects-grid > div {
+  background: #20232a;
+  border: 1.5px solid #363b42;
+  color: #e5e7eb;
 }
 
 /* Animações */
@@ -79,7 +87,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: #181a1b;
+  color: #e5e7eb;
   transition: opacity 2s ease-in-out;
   opacity: 1;
 }
@@ -120,24 +129,53 @@ html {
 }
 
 /* Estilo para links ativos */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  background: #20232aee;
+  border-bottom: 1.5px solid #363b42;
+  box-shadow: 0 2px 16px 0 #181a1b33;
+  padding: 0;
+}
+
 nav a.active {
-  color: #00ff87;
-  border-bottom: 2px solid #00ff87;
+  color: #e5e7eb;
+  border-bottom: 2px solid #e5e7eb;
 }
 
 /* Estilo para hover dos links */
 nav a:hover {
+  color: #bfc4ca;
+}
+
+nav .menu-btn {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 1.5rem;
+  margin: 0 0.5rem;
+  background: transparent;
+  border: none;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+nav .menu-btn.active, nav .menu-btn:hover {
+  background: #23262b;
   color: #00ff87;
-  transition: color 0.3s ease;
+  box-shadow: 0 2px 8px 0 #00ff8722;
 }
 
 /* Gradientes e cores */
-.bg-gradient-green {
-  background: linear-gradient(135deg, rgba(0, 255, 135, 0.1), rgba(0, 255, 135, 0.05));
-}
-
-.border-gradient-green {
-  border-image: linear-gradient(to right, rgba(0, 255, 135, 0.5), rgba(0, 255, 135, 0.1)) 1;
+.bg-gradient-green, .border-gradient-green {
+  background: none;
+  border-image: none;
 }
 
 /* Animação de fade para a entrada */
@@ -147,4 +185,68 @@ body {
 
 body.fade-out {
   opacity: 0;
+}
+
+.section, .projects-grid > div, .bg-gray-900\/80, .bg-gray-800\/80, .bg-black\/40 {
+  background: #20232a !important;
+  border: 1.5px solid #363b42 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 16px 0 #181a1b33 !important;
+  color: #e5e7eb;
+}
+
+.card, .container, .content {
+  background: #20232a !important;
+  border-radius: 16px !important;
+  border: 1.5px solid #363b42 !important;
+  box-shadow: 0 2px 16px 0 #181a1b33 !important;
+}
+
+section {
+  margin-bottom: 80px;
+}
+
+.glass-card {
+  background: rgba(35, 38, 43, 0.7);
+  border: 1.5px solid #4a4f57;
+  border-radius: 2.5rem;
+  box-shadow: 0 8px 32px 0 #181a1b44;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: box-shadow 0.3s, border 0.3s, background 0.3s;
+  animation: fadeInUp 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.glass-btn {
+  background: rgba(32,35,42,0.8);
+  border: 1.5px solid #363b42;
+  border-radius: 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 1rem 2.5rem;
+  box-shadow: 0 2px 8px 0 #00ff8722;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+  cursor: pointer;
+}
+.glass-btn:hover, .glass-btn:focus {
+  background: #23262b;
+  color: #00ff87;
+  box-shadow: 0 4px 16px 0 #00ff87aa;
+  transform: scale(1.04);
+}
+
+.glass-progress {
+  box-shadow: 0 0 8px 2px #00ff87cc;
+  background: #23262b;
+  border-radius: 1rem;
+}
+
+@media (max-width: 900px) {
+  .glass-card { padding: 2rem !important; border-radius: 1.5rem !important; }
 } 
