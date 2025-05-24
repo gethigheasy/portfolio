@@ -152,7 +152,7 @@ const Home: React.FC = () => {
             />
             <div className={`absolute bottom-2 right-2 w-5 h-5 rounded-full ${getStatusColor(discordData?.discord_status || 'offline')} border-2 border-[#23262b]`}></div>
           </div>
-          <h1 className="text-5xl font-extrabold text-gray-100 text-center tracking-tight drop-shadow-xl mt-2">Victor</h1>
+          <h1 className="text-5xl font-extrabold text-gray-100 text-center tracking-tight drop-shadow-xl mt-2">unknowndeath1997</h1>
         </div>
         <div className="w-full border-t border-[#3a3f47] pt-10 flex flex-col items-center">
           {discordData?.activities && discordData.activities.length > 0 && discordData.activities.some(a => a.type !== 4 && ((a.name === 'Spotify' && discordData.spotify) || a.name !== 'Spotify')) ? (
