@@ -46,7 +46,7 @@ const Contact: React.FC = () => {
                 href={contact.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group relative flex items-center justify-center gap-4 bg-gradient-to-br ${contact.color} ${contact.hoverColor} text-white p-6 md:p-8 rounded-2xl border border-[#363b42] transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#00ff87]/20 transform hover:scale-105 hover:-translate-y-2 animate-slide-in-left`}
+                className={`group relative flex items-center justify-center gap-4 bg-gradient-to-br ${contact.color} ${contact.hoverColor} text-white p-6 md:p-8 rounded-2xl border border-[#1a1a1a] transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#00ff87]/10 transform hover:scale-105 hover:-translate-y-2 animate-slide-in-left`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Efeito de brilho */}
@@ -84,7 +84,7 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Mensagem adicional */}
-          <div className="mt-8 pt-8 border-t border-[#3a3f47] text-center animate-fadeIn">
+          <div className="mt-8 pt-8 border-t border-[#1a1a1a] text-center animate-fadeIn">
             <p className="text-gray-400 text-base md:text-lg">
               Prefere outra forma de contato? 
               <span className="text-[#00ff87] font-semibold"> Sinta-se à vontade para me encontrar no Discord!</span>

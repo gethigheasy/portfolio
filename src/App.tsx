@@ -68,11 +68,11 @@ const Portfolio: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-br from-[#0a0b0d] via-[#191b1f] to-[#0a0b0d]">
+    <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-br from-[#000000] via-[#050505] to-[#000000]">
       <div className="relative z-10">
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolling ? 'bg-[#20232a]/95 backdrop-blur-md shadow-lg' : 'bg-[#20232a]/80 backdrop-blur-sm'
-        } border-b border-[#363b42]`}>
+          isScrolling ? 'bg-[#050505]/95 backdrop-blur-md shadow-lg' : 'bg-[#050505]/90 backdrop-blur-sm'
+        } border-b border-[#1a1a1a]`}>
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex justify-center items-center h-20 gap-2 md:gap-4">
               {menuItems.map((item, index) => (

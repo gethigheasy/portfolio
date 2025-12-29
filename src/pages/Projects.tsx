@@ -113,7 +113,7 @@ const Projects: React.FC = () => {
             ref={(el) => {
               cardRefs.current[index] = el;
             }}
-            className={`group relative bg-[#23262b] border border-[#3a3f47] rounded-3xl p-8 md:p-10 shadow-2xl flex flex-col gap-6 min-h-[500px] justify-between transition-all duration-500 hover:scale-[1.02] hover:border-[#00ff87]/50 ${
+            className={`group relative bg-[#0a0a0a] border border-[#1a1a1a] rounded-3xl p-8 md:p-10 shadow-2xl flex flex-col gap-6 min-h-[500px] justify-between transition-all duration-500 hover:scale-[1.02] hover:border-[#00ff87]/30 ${
               visibleCards[index] ? 'animate-slide-in-left opacity-100' : 'opacity-0 translate-x-[-30px]'
             }`}
             style={{
@@ -179,7 +179,7 @@ const Projects: React.FC = () => {
                   {project.techStack.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-4 py-2 bg-[#20232a] text-[#00ff87] rounded-full text-sm font-semibold border border-[#363b42] hover:border-[#00ff87] hover:bg-[#23262b] hover:shadow-lg hover:shadow-[#00ff87]/20 transition-all duration-300 hover:scale-105"
+                      className="px-4 py-2 bg-[#050505] text-[#00ff87] rounded-full text-sm font-semibold border border-[#1a1a1a] hover:border-[#00ff87] hover:bg-[#0a0a0a] hover:shadow-lg hover:shadow-[#00ff87]/10 transition-all duration-300 hover:scale-105"
                     >
                       {tech}
                     </span>
@@ -193,7 +193,7 @@ const Projects: React.FC = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/btn inline-flex items-center gap-3 px-8 py-4 bg-[#20232a] hover:bg-gradient-to-r hover:from-[#00ff87] hover:to-[#00cc6a] text-white hover:text-[#0a0b0d] rounded-xl border border-[#363b42] hover:border-transparent font-bold text-base md:text-lg transition-all duration-300 shadow-lg hover:shadow-[#00ff87]/30 min-w-[200px] justify-center transform hover:scale-105"
+                className="group/btn inline-flex items-center gap-3 px-8 py-4 bg-[#050505] hover:bg-gradient-to-r hover:from-[#00ff87] hover:to-[#00cc6a] text-white hover:text-[#000000] rounded-xl border border-[#1a1a1a] hover:border-transparent font-bold text-base md:text-lg transition-all duration-300 shadow-lg hover:shadow-[#00ff87]/20 min-w-[200px] justify-center transform hover:scale-105"
               >
                 <span>Ver no GitHub</span>
                 <svg 
