@@ -21,11 +21,11 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay = 150 }) => {
   }, [currentIndex, text, delay]);
 
   return (
-    <span className="font-mono text-white">
+    <span className="font-mono text-transparent bg-clip-text bg-gradient-to-r from-[#00ff87] via-white to-[#00ff87] animate-gradient-shift">
       {displayText}
-      <span className="animate-blink">|</span>
+      <span className="animate-blink text-[#00ff87]">|</span>
     </span>
   );
 };
 
-export default Typewriter; 
+export default Typewriter;
