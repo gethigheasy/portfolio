@@ -29,11 +29,11 @@ const MusicHistory: React.FC<MusicHistoryProps> = ({ history, maxItems = 10 }) =
   };
 
   return (
-    <div className="w-full mt-8">
-      <h3 className="text-xl md:text-2xl font-bold text-white mb-4 text-center">
+    <div className="w-full mt-4">
+      <h3 className="text-lg md:text-xl font-bold text-white mb-3 text-center">
         Histórico Recente
       </h3>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
         {displayHistory.map((item, index) => (
           <div
             key={`${item.track_id}-${item.timestamp}`}

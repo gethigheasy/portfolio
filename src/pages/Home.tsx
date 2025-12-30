@@ -93,18 +93,42 @@ const Home: React.FC = () => {
       try {
         const response = await axios.get('https://api.lanyard.rest/v1/users/936545483378290708');
         const data = response.data.data;
-        setDiscordData(data);
+        
+        // Verificar se há dados do Spotify diretamente ou nas activities
+        let spotifyData = data.spotify;
+        if (!spotifyData && data.activities) {
+          const spotifyActivity = data.activities.find((activity: any) => 
+            activity.name === 'Spotify' || activity.application_id === '463097721130188830'
+          );
+          if (spotifyActivity) {
+            // Converter activity para formato spotify
+            spotifyData = {
+              album: spotifyActivity.assets?.large_text || spotifyActivity.details || '',
+              album_art_url: spotifyActivity.assets?.large_image 
+                ? `https://i.scdn.co/image/${spotifyActivity.assets.large_image.replace('spotify:', '')}`
+                : '',
+              artist: spotifyActivity.state || '',
+              song: spotifyActivity.details || '',
+              track_id: spotifyActivity.sync_id || '',
+              timestamps: spotifyActivity.timestamps || { start: Date.now(), end: Date.now() + 180000 }
+            };
+          }
+        }
+        
+        // Atualizar dados com spotify processado
+        const updatedData = { ...data, spotify: spotifyData };
+        setDiscordData(updatedData);
         
         // Detectar mudança de música e adicionar ao histórico
-        if (data.spotify) {
-          const currentTrackId = data.spotify.track_id;
+        if (spotifyData && spotifyData.track_id) {
+          const currentTrackId = spotifyData.track_id;
           if (currentTrackId && currentTrackId !== previousTrackIdRef.current) {
             addToHistory({
-              track_id: data.spotify.track_id,
-              song: data.spotify.song,
-              artist: data.spotify.artist,
-              album: data.spotify.album,
-              album_art_url: data.spotify.album_art_url
+              track_id: spotifyData.track_id,
+              song: spotifyData.song,
+              artist: spotifyData.artist,
+              album: spotifyData.album,
+              album_art_url: spotifyData.album_art_url
             });
             previousTrackIdRef.current = currentTrackId;
           }
@@ -154,14 +178,14 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] px-4 overflow-y-auto">
+    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] px-4 overflow-y-auto" style={{ zoom: 0.85 }}>
       {/* Seção Principal com Avatar e Status */}
-      <div className="glass-card w-full max-w-4xl flex flex-col gap-8 py-8 px-6 md:px-10 animate-fadeInUp my-4">
+      <div className="glass-card w-full max-w-4xl flex flex-col gap-4 py-4 px-6 md:px-8 animate-fadeInUp my-2">
         {/* Avatar e Nome */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-2">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-[#00ff87] to-[#00cc6a] rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity animate-pulse-slow"></div>
-            <div className="relative w-40 h-40 md:w-48 md:h-48">
+            <div className="relative w-32 h-32 md:w-36 md:h-36">
               {loading ? (
                 <div className="w-full h-full rounded-full bg-[#0a0a0a] animate-pulse flex items-center justify-center">
                   <div className="w-16 h-16 border-4 border-[#00ff87] border-t-transparent rounded-full animate-spin"></div>
@@ -190,34 +214,34 @@ const Home: React.FC = () => {
           </div>
           
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00ff87] to-[#00cc6a] tracking-tight mb-2 animate-scale-in">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00ff87] to-[#00cc6a] tracking-tight mb-1 animate-scale-in">
               unknowndeath1997
             </h1>
-            <div className="flex items-center justify-center gap-2 mt-2">
-              <span className="text-gray-400 text-sm md:text-base">{getStatusText(discordData?.discord_status || 'offline')}</span>
+            <div className="flex items-center justify-center gap-2 mt-1">
+              <span className="text-gray-400 text-xs md:text-sm">{getStatusText(discordData?.discord_status || 'offline')}</span>
               <span className="text-gray-600">•</span>
-              <span className="text-gray-400 text-sm md:text-base">Desenvolvedor Full Stack</span>
+              <span className="text-gray-400 text-xs md:text-sm">Desenvolvedor Full Stack</span>
             </div>
           </div>
         </div>
 
         {/* Seção Sobre Mim */}
-        <div className="w-full border-t border-[#1a1a1a] pt-8 mt-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 text-center">Sobre Mim</h2>
-          <p className="text-gray-300 text-center text-base md:text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
+        <div className="w-full border-t border-[#1a1a1a] pt-4 mt-2">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-3 text-center">Sobre Mim</h2>
+          <p className="text-gray-300 text-center text-sm md:text-base leading-relaxed mb-4 max-w-2xl mx-auto">
             Desenvolvedor apaixonado por criar soluções inovadoras e eficientes. 
             Especializado em desenvolvimento web moderno com foco em experiência do usuário e performance. 
             Trabalho principalmente com tecnologias JavaScript/TypeScript e tenho experiência significativa 
             com bots do Discord e aplicações web.
           </p>
           
-          <div className="mt-6">
-            <h3 className="text-xl font-semibold text-white mb-4 text-center">Habilidades</h3>
-            <div className="flex flex-wrap justify-center gap-3">
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold text-white mb-3 text-center">Habilidades</h3>
+            <div className="flex flex-wrap justify-center gap-2">
               {skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-4 py-2 bg-[#0a0a0a] text-[#00ff87] rounded-full text-sm font-semibold border border-[#1a1a1a] hover:border-[#00ff87] hover:shadow-lg hover:shadow-[#00ff87]/10 transition-all duration-300 animate-scale-in"
+                  className="px-3 py-1 bg-[#0a0a0a] text-[#00ff87] rounded-full text-xs font-semibold border border-[#1a1a1a] hover:border-[#00ff87] hover:shadow-lg hover:shadow-[#00ff87]/10 transition-all duration-300 animate-scale-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {skill}
@@ -228,54 +252,58 @@ const Home: React.FC = () => {
         </div>
 
         {/* Seção Spotify/Música */}
-        <div className="w-full border-t border-[#1a1a1a] pt-8 mt-4">
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-6 text-center">Ouvindo Agora</h2>
-          {discordData?.spotify ? (
-            <div className="flex flex-col md:flex-row items-center md:items-start w-full max-w-2xl mx-auto gap-6 p-6 bg-[#0a0a0a]/80 rounded-2xl border border-[#1a1a1a] hover:border-[#00ff87]/30 transition-all duration-300 animate-slide-in-left">
+        <div className="w-full border-t border-[#1a1a1a] pt-4 mt-2">
+          <h2 className="text-lg md:text-xl font-bold text-white mb-4 text-center font-mono">
+            <span className="font-bold">Ouvindo</span> <span className="font-normal">Agora</span>
+          </h2>
+          {discordData?.spotify && discordData.spotify.song ? (
+            <div className="flex flex-col md:flex-row items-center md:items-start w-full max-w-2xl mx-auto gap-4 p-4 bg-[#0a0a0a]/80 rounded-xl border border-[#1a1a1a] hover:border-[#00ff87]/30 transition-all duration-300 animate-slide-in-left">
               <div className="relative group">
                 <img
                   src={discordData.spotify.album_art_url}
                   alt={discordData.spotify.album}
-                  className="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover border-2 border-[#1a1a1a] shadow-xl transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[#00ff87]/15"
+                  className="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover border-2 border-[#1a1a1a] shadow-xl transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[#00ff87]/15"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#00ff87]/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
               <div className="flex-1 flex flex-col justify-center w-full md:w-auto text-center md:text-left">
-                <div className="text-white font-extrabold text-xl md:text-2xl truncate mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                <div className="text-white font-extrabold text-lg md:text-xl truncate mb-1 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   {discordData.spotify.song}
                 </div>
-                <div className="text-gray-300 text-base md:text-lg truncate font-semibold mb-1">
+                <div className="text-gray-300 text-sm md:text-base truncate font-semibold mb-1">
                   {discordData.spotify.artist}
                 </div>
-                <div className="text-gray-500 text-sm md:text-base truncate mb-4">
+                <div className="text-gray-500 text-xs md:text-sm truncate mb-3">
                   {discordData.spotify.album}
                 </div>
                 <SpotifyProgressBar timestamps={discordData.spotify.timestamps} />
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto py-12 opacity-70 animate-fadeInUp">
-              <div className="w-20 h-20 mb-4 rounded-full bg-[#0a0a0a] flex items-center justify-center border-2 border-[#1a1a1a]">
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24" className="text-gray-400">
+            <div className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto py-8 opacity-70 animate-fadeInUp">
+              <div className="w-16 h-16 mb-3 rounded-full bg-[#0a0a0a] flex items-center justify-center border-2 border-[#1a1a1a]">
+                <svg width="32" height="32" fill="none" viewBox="0 0 24 24" className="text-gray-400">
                   <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm-2-7v-2a2 2 0 1 1 4 0v2m-6 0h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-gray-400 text-base md:text-lg font-medium text-center">
+              <span className="text-gray-400 text-sm md:text-base font-medium text-center">
                 Nenhuma música tocando no momento.<br/>
-                <span className="text-gray-500 text-sm md:text-base">Provavelmente está trabalhando ou descansando.</span>
+                <span className="text-gray-500 text-xs md:text-sm">Provavelmente está trabalhando ou descansando.</span>
               </span>
             </div>
           )}
           
           {/* Histórico de Músicas */}
           {history.length > 0 && (
-            <MusicHistory history={history} maxItems={10} />
+            <div className="mt-4">
+              <MusicHistory history={history} maxItems={5} />
+            </div>
           )}
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="text-center text-gray-500 text-xs md:text-sm mt-4 mb-4 tracking-wide animate-fadeIn">
+      <footer className="text-center text-gray-500 text-xs mt-2 mb-2 tracking-wide animate-fadeIn">
         © 2025 Victor. Todos os direitos reservados.
       </footer>
     </div>
