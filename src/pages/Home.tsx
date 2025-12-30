@@ -154,9 +154,9 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] px-4 py-20">
+    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] px-4 overflow-y-auto">
       {/* Seção Principal com Avatar e Status */}
-      <div className="glass-card w-full max-w-4xl flex flex-col gap-8 mt-20 mb-12 py-12 px-8 md:px-12 animate-fadeInUp">
+      <div className="glass-card w-full max-w-4xl flex flex-col gap-8 py-8 px-6 md:px-10 animate-fadeInUp my-4">
         {/* Avatar e Nome */}
         <div className="flex flex-col items-center gap-4">
           <div className="relative group">
@@ -275,7 +275,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Footer */}
-      <footer className="text-center text-gray-500 text-sm md:text-base mb-8 tracking-wide animate-fadeIn">
+      <footer className="text-center text-gray-500 text-xs md:text-sm mt-4 mb-4 tracking-wide animate-fadeIn">
         © 2025 Victor. Todos os direitos reservados.
       </footer>
     </div>

@@ -112,7 +112,7 @@ const Relationship: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
+    <div className="h-screen flex flex-col items-center justify-center px-4 overflow-y-auto">
       <div className="w-full max-w-4xl">
         <div className="glass-card p-8 md:p-12 border border-[#2a2a2a] animate-fadeInUp">
           <div className="text-center mb-8">

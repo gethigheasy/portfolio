@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HiHome } from 'react-icons/hi';
+import { FaCode } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import Home from './pages/Home';
 import Languages from './pages/Languages';
 import Relationship from './pages/Relationship';
@@ -7,102 +10,81 @@ import Entrance from './pages/Entrance';
 import { AudioProvider } from './contexts/AudioContext';
 import './App.css';
 
+type PageId = 'inicio' | 'linguagens' | 'namoro';
+
 const Portfolio: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('inicio');
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [currentPage, setCurrentPage] = useState<PageId>('inicio');
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+  const menuItems = [
+    { id: 'inicio' as PageId, icon: HiHome },
+    { id: 'linguagens' as PageId, icon: FaCode },
+    { id: 'namoro' as PageId, icon: FaHeart }
+  ];
+
+  const changePage = (pageId: PageId) => {
+    if (pageId === currentPage || isTransitioning) return;
+
+    setIsTransitioning(true);
     
-    const handleScroll = () => {
-      setIsScrolling(true);
-      const sections = ['inicio', 'linguagens', 'namoro'];
-      let current = 'inicio';
-      
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            current = id;
-          }
-        }
-      }
-      
-      setActiveSection(current);
-      
-      // Reset scrolling state after scroll ends
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        setIsScrolling(false);
-      }, 150);
-    };
+    // Fade out
+    setTimeout(() => {
+      setCurrentPage(pageId);
+      // Fade in
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
+  };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
-    };
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const navHeight = 56;
-      const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'inicio':
+        return <Home />;
+      case 'linguagens':
+        return <Languages />;
+      case 'namoro':
+        return <Relationship />;
+      default:
+        return <Home />;
     }
   };
 
-  const menuItems = [
-    { id: 'inicio', label: 'Início', icon: '' },
-    { id: 'linguagens', label: 'Linguagens', icon: '' },
-    { id: 'namoro', label: 'Nós', icon: '' }
-  ];
-
   return (
-    <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a]">
+    <div className="min-h-screen text-white relative overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a]">
       <div className="relative z-10">
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolling ? 'bg-[#050505]/95 backdrop-blur-md shadow-lg' : 'bg-[#050505]/90 backdrop-blur-sm'
-        } border-b border-[#1a1a1a]`}>
+        <nav className="fixed top-0 left-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-[#2a2a2a]">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex justify-center items-center h-14 gap-1 md:gap-2">
-              {menuItems.map((item, index) => (
-                <button
-                  key={item.id}
-                  className={`menu-btn relative group ${
-                    activeSection === item.id ? ' active' : ''
-                  }`}
-                  onClick={() => scrollToSection(item.id)}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <span className="relative z-10">
-                    {item.label}
-                  </span>
-                </button>
-              ))}
+            <div className="flex justify-center items-center h-14 gap-2 md:gap-4">
+              {menuItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <button
+                    key={item.id}
+                    className={`menu-btn relative group ${
+                      currentPage === item.id ? ' active' : ''
+                    }`}
+                    onClick={() => changePage(item.id)}
+                    disabled={isTransitioning}
+                  >
+                    <IconComponent 
+                      className="w-5 h-5 md:w-6 md:h-6 text-white transition-all duration-300 group-hover:scale-110" 
+                    />
+                  </button>
+                );
+              })}
             </div>
           </div>
         </nav>
         
-        <main className="pt-14">
-          <section id="inicio" className="scroll-mt-14">
-            <Home />
-          </section>
-          <section id="linguagens" className="scroll-mt-14">
-            <Languages />
-          </section>
-          <section id="namoro" className="scroll-mt-14">
-            <Relationship />
-          </section>
+        <main className="h-screen pt-14 overflow-hidden">
+          <div 
+            className={`page-container h-full transition-opacity duration-300 ${
+              isTransitioning ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
+            {renderPage()}
+          </div>
         </main>
       </div>
     </div>

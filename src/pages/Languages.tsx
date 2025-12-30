@@ -41,9 +41,9 @@ const Languages: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 py-20">
+    <div className="h-screen flex flex-col items-center justify-center px-4 overflow-y-auto">
       <div className="w-full max-w-6xl">
-        <div className="text-center mb-16 animate-fadeInUp">
+        <div className="text-center mb-8 md:mb-12 animate-fadeInUp">
           <h2 className="text-4xl md:text-5xl font-mono font-normal text-white mb-4 tracking-wider">
             LINGUAGENS
           </h2>

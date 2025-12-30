@@ -170,6 +170,21 @@ body.fade-out {
   opacity: 0;
 }
 
+/* Transições de página */
+.page-container {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.page-fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.page-fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
 /* Animação do cursor do Typewriter */
 @keyframes blink {
   0%, 100% { opacity: 1; }
