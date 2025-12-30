@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HiHome } from 'react-icons/hi';
 import { FaCode } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
-import { IconType } from 'react-icons';
 import Home from './pages/Home';
 import Languages from './pages/Languages';
 import Relationship from './pages/Relationship';
@@ -16,12 +15,6 @@ type PageId = 'inicio' | 'linguagens' | 'namoro';
 const Portfolio: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageId>('inicio');
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const menuItems: Array<{ id: PageId; icon: IconType }> = [
-    { id: 'inicio', icon: HiHome },
-    { id: 'linguagens', icon: FaCode },
-    { id: 'namoro', icon: FaHeart }
-  ];
 
   const changePage = (pageId: PageId) => {
     if (pageId === currentPage || isTransitioning) return;
@@ -57,23 +50,36 @@ const Portfolio: React.FC = () => {
         <nav className="fixed top-0 left-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-[#2a2a2a]">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex justify-center items-center h-14 gap-2 md:gap-4">
-              {menuItems.map((item) => {
-                const IconComponent = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    className={`menu-btn relative group ${
-                      currentPage === item.id ? ' active' : ''
-                    }`}
-                    onClick={() => changePage(item.id)}
-                    disabled={isTransitioning}
-                  >
-                    <IconComponent 
-                      className="w-5 h-5 md:w-6 md:h-6 text-white transition-all duration-300 group-hover:scale-110" 
-                    />
-                  </button>
-                );
-              })}
+              <button
+                className={`menu-btn relative group ${
+                  currentPage === 'inicio' ? ' active' : ''
+                }`}
+                onClick={() => changePage('inicio')}
+                disabled={isTransitioning}
+              >
+                {/* @ts-expect-error - react-icons type issue with strict mode */}
+                <HiHome className="w-5 h-5 md:w-6 md:h-6 text-white transition-all duration-300 group-hover:scale-110" />
+              </button>
+              <button
+                className={`menu-btn relative group ${
+                  currentPage === 'linguagens' ? ' active' : ''
+                }`}
+                onClick={() => changePage('linguagens')}
+                disabled={isTransitioning}
+              >
+                {/* @ts-expect-error - react-icons type issue with strict mode */}
+                <FaCode className="w-5 h-5 md:w-6 md:h-6 text-white transition-all duration-300 group-hover:scale-110" />
+              </button>
+              <button
+                className={`menu-btn relative group ${
+                  currentPage === 'namoro' ? ' active' : ''
+                }`}
+                onClick={() => changePage('namoro')}
+                disabled={isTransitioning}
+              >
+                {/* @ts-expect-error - react-icons type issue with strict mode */}
+                <FaHeart className="w-5 h-5 md:w-6 md:h-6 text-white transition-all duration-300 group-hover:scale-110" />
+              </button>
             </div>
           </div>
         </nav>
