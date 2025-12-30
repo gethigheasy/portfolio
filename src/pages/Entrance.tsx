@@ -60,7 +60,7 @@ const Entrance: React.FC = () => {
   return (
     <div 
       onClick={handleEnter}
-      className="fixed inset-0 bg-gradient-to-br from-[#000000] via-[#050505] to-[#000000] flex flex-col items-center justify-center cursor-pointer overflow-hidden"
+      className="fixed inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] flex flex-col items-center justify-center cursor-pointer overflow-hidden"
     >
       {/* Efeito de gradiente que segue o mouse */}
       <div 

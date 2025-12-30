@@ -155,7 +155,7 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-[#000000] via-[#050505] to-[#000000] px-4 py-20">
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] px-4 py-20">
       {/* Seção Principal com Avatar e Status */}
       <div className="glass-card w-full max-w-4xl flex flex-col gap-8 mt-20 mb-12 py-12 px-8 md:px-12 animate-fadeInUp">
         {/* Avatar e Nome */}

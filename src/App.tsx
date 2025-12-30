@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Projects from './pages/Projects';
-import Contact from './pages/Contact';
+import Languages from './pages/Languages';
+import Relationship from './pages/Relationship';
 import Entrance from './pages/Entrance';
 import { AudioProvider } from './contexts/AudioContext';
 import './App.css';
@@ -16,7 +16,7 @@ const Portfolio: React.FC = () => {
     
     const handleScroll = () => {
       setIsScrolling(true);
-      const sections = ['inicio', 'projetos', 'contato'];
+      const sections = ['inicio', 'linguagens', 'namoro'];
       let current = 'inicio';
       
       for (const id of sections) {
@@ -62,13 +62,13 @@ const Portfolio: React.FC = () => {
   };
 
   const menuItems = [
-    { id: 'inicio', label: 'Início', icon: '🏠' },
-    { id: 'projetos', label: 'Projetos', icon: '💼' },
-    { id: 'contato', label: 'Contato', icon: '📧' }
+    { id: 'inicio', label: 'Início', icon: '' },
+    { id: 'linguagens', label: 'Linguagens', icon: '' },
+    { id: 'namoro', label: 'Nós', icon: '' }
   ];
 
   return (
-    <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-br from-[#000000] via-[#050505] to-[#000000]">
+    <div className="min-h-screen text-white relative overflow-x-hidden bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a]">
       <div className="relative z-10">
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolling ? 'bg-[#050505]/95 backdrop-blur-md shadow-lg' : 'bg-[#050505]/90 backdrop-blur-sm'
@@ -84,18 +84,9 @@ const Portfolio: React.FC = () => {
                   onClick={() => scrollToSection(item.id)}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <span className="text-lg md:text-xl">{item.icon}</span>
-                    <span className="hidden sm:inline">{item.label}</span>
+                  <span className="relative z-10">
+                    {item.label}
                   </span>
-                  
-                  {/* Indicador de seção ativa melhorado */}
-                  {activeSection === item.id && (
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-[#00ff87] to-[#00cc6a] rounded-t-full shadow-lg shadow-[#00ff87]/50 animate-scale-in"></div>
-                  )}
-                  
-                  {/* Efeito de hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#00ff87]/10 to-[#00cc6a]/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
               ))}
             </div>
@@ -106,11 +97,11 @@ const Portfolio: React.FC = () => {
           <section id="inicio" className="scroll-mt-20">
             <Home />
           </section>
-          <section id="projetos" className="scroll-mt-20">
-            <Projects />
+          <section id="linguagens" className="scroll-mt-20">
+            <Languages />
           </section>
-          <section id="contato" className="scroll-mt-20">
-            <Contact />
+          <section id="namoro" className="scroll-mt-20">
+            <Relationship />
           </section>
         </main>
       </div>
