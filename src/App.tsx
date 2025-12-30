@@ -50,7 +50,7 @@ const Portfolio: React.FC = () => {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      const navHeight = 80;
+      const navHeight = 56;
       const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navHeight;
 
@@ -74,7 +74,7 @@ const Portfolio: React.FC = () => {
           isScrolling ? 'bg-[#050505]/95 backdrop-blur-md shadow-lg' : 'bg-[#050505]/90 backdrop-blur-sm'
         } border-b border-[#1a1a1a]`}>
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex justify-center items-center h-20 gap-2 md:gap-4">
+            <div className="flex justify-center items-center h-14 gap-1 md:gap-2">
               {menuItems.map((item, index) => (
                 <button
                   key={item.id}
@@ -93,14 +93,14 @@ const Portfolio: React.FC = () => {
           </div>
         </nav>
         
-        <main className="pt-20">
-          <section id="inicio" className="scroll-mt-20">
+        <main className="pt-14">
+          <section id="inicio" className="scroll-mt-14">
             <Home />
           </section>
-          <section id="linguagens" className="scroll-mt-20">
+          <section id="linguagens" className="scroll-mt-14">
             <Languages />
           </section>
-          <section id="namoro" className="scroll-mt-20">
+          <section id="namoro" className="scroll-mt-14">
             <Relationship />
           </section>
         </main>
