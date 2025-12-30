@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
-import axios, { AxiosError } from 'axios';
+import React, { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
 import { useMusicHistory } from '../hooks/useMusicHistory';
 import MusicHistory from '../components/MusicHistory';
-import { sanitizeDiscordData, validateDiscordData } from '../utils/sanitize';
 
 interface DiscordData {
   discord_user: {

@@ -38,6 +38,7 @@ const Relationship: React.FC = () => {
     const interval = setInterval(calculateTime, 1000);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Proteções contra download
@@ -86,9 +87,9 @@ const Relationship: React.FC = () => {
       
       // Prevenir seleção
       imageContainer.style.userSelect = 'none';
-      imageContainer.style.webkitUserSelect = 'none';
-      imageContainer.style.MozUserSelect = 'none';
-      imageContainer.style.msUserSelect = 'none';
+      (imageContainer.style as any).webkitUserSelect = 'none';
+      (imageContainer.style as any).MozUserSelect = 'none';
+      (imageContainer.style as any).msUserSelect = 'none';
       
       // Prevenir download via eventos
       imageContainer.addEventListener('copy', preventDownload);
@@ -130,15 +131,14 @@ const Relationship: React.FC = () => {
               className="relative w-48 h-48 md:w-64 md:h-64 rounded-lg overflow-hidden border border-[#2a2a2a] select-none"
               style={{
                 userSelect: 'none',
-                WebkitUserSelect: 'none',
-                MozUserSelect: 'none',
-                msUserSelect: 'none',
+                WebkitUserSelect: 'none' as any,
+                MozUserSelect: 'none' as any,
+                msUserSelect: 'none' as any,
                 pointerEvents: 'auto',
                 position: 'relative'
-              }}
+              } as React.CSSProperties}
               onContextMenu={(e) => e.preventDefault()}
               onDragStart={(e) => e.preventDefault()}
-              onSelectStart={(e) => e.preventDefault()}
             >
               {/* Overlay transparente para dificultar acesso direto */}
               <div 
@@ -158,18 +158,17 @@ const Relationship: React.FC = () => {
                 className="w-full h-full object-cover pointer-events-none select-none"
                 style={{
                   userSelect: 'none',
-                  WebkitUserSelect: 'none',
-                  WebkitUserDrag: 'none',
-                  MozUserSelect: 'none',
-                  msUserSelect: 'none',
+                  WebkitUserSelect: 'none' as any,
+                  WebkitUserDrag: 'none' as any,
+                  MozUserSelect: 'none' as any,
+                  msUserSelect: 'none' as any,
                   pointerEvents: 'none',
                   imageRendering: 'auto',
-                  draggable: false
-                }}
+                } as React.CSSProperties}
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
                 onDragStart={(e) => e.preventDefault()}
-                onSelectStart={(e) => e.preventDefault()}
+                onMouseDown={(e) => e.preventDefault()}
                 onError={(e) => {
                   // Fallback se a imagem não carregar
                   (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%231a1a1a" width="400" height="400"/%3E%3Ctext fill="%23ffffff" font-family="monospace" font-size="20" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3E%3C/text%3E%3C/svg%3E';
