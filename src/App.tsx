@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HiHome } from 'react-icons/hi';
 import { FaCode } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
+import { IconType } from 'react-icons';
 import Home from './pages/Home';
 import Languages from './pages/Languages';
 import Relationship from './pages/Relationship';
@@ -16,10 +17,10 @@ const Portfolio: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageId>('inicio');
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const menuItems = [
-    { id: 'inicio' as PageId, icon: HiHome },
-    { id: 'linguagens' as PageId, icon: FaCode },
-    { id: 'namoro' as PageId, icon: FaHeart }
+  const menuItems: Array<{ id: PageId; icon: IconType }> = [
+    { id: 'inicio', icon: HiHome },
+    { id: 'linguagens', icon: FaCode },
+    { id: 'namoro', icon: FaHeart }
   ];
 
   const changePage = (pageId: PageId) => {
