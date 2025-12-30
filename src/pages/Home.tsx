@@ -66,15 +66,15 @@ const SpotifyProgressBar: React.FC<{ timestamps: { start: number; end: number } 
   const elapsed = Math.min(now - timestamps.start, total);
 
   return (
-    <div className="w-full mt-3">
-      <div className="relative h-2 glass-progress overflow-hidden rounded-full">
+    <div className="w-full mt-2">
+      <div className="relative h-1.5 glass-progress overflow-hidden rounded-full">
         <div
-          className="absolute left-0 top-0 h-2 bg-gradient-to-r from-[#00ff87] to-[#00cc6a] rounded-full transition-all duration-500 shadow-lg"
+          className="absolute left-0 top-0 h-1.5 bg-gradient-to-r from-[#00ff87] to-[#00cc6a] rounded-full transition-all duration-500 shadow-lg"
           style={{ width: `${progress}%` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" style={{ width: `${progress}%` }} />
       </div>
-      <div className="flex justify-between text-xs text-gray-400 mt-2 font-mono">
+      <div className="flex justify-between text-xs text-gray-400 mt-1 font-mono">
         <span>{msToMinSec(elapsed)}</span>
         <span>{msToMinSec(total)}</span>
       </div>
@@ -178,14 +178,14 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] px-4 overflow-y-auto" style={{ zoom: 0.85 }}>
+    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0a0a] via-[#111111] to-[#0a0a0a] px-4 overflow-y-auto">
       {/* Seção Principal com Avatar e Status */}
-      <div className="glass-card w-full max-w-4xl flex flex-col gap-4 py-4 px-6 md:px-8 animate-fadeInUp my-2">
+      <div className="glass-card w-full max-w-4xl flex flex-col gap-3 py-3 px-5 md:px-7 animate-fadeInUp my-1">
         {/* Avatar e Nome */}
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-center gap-1.5">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#00ff87] to-[#00cc6a] rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity animate-pulse-slow"></div>
-            <div className="relative w-32 h-32 md:w-36 md:h-36">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00ff87] to-[#00cc6a] rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity animate-pulse-slow"></div>
+            <div className="relative w-28 h-28 md:w-32 md:h-32">
               {loading ? (
                 <div className="w-full h-full rounded-full bg-[#0a0a0a] animate-pulse flex items-center justify-center">
                   <div className="w-16 h-16 border-4 border-[#00ff87] border-t-transparent rounded-full animate-spin"></div>
@@ -214,34 +214,34 @@ const Home: React.FC = () => {
           </div>
           
           <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00ff87] to-[#00cc6a] tracking-tight mb-1 animate-scale-in">
+            <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00ff87] to-[#00cc6a] tracking-tight mb-0.5 animate-scale-in">
               unknowndeath1997
             </h1>
-            <div className="flex items-center justify-center gap-2 mt-1">
-              <span className="text-gray-400 text-xs md:text-sm">{getStatusText(discordData?.discord_status || 'offline')}</span>
-              <span className="text-gray-600">•</span>
-              <span className="text-gray-400 text-xs md:text-sm">Desenvolvedor Full Stack</span>
+            <div className="flex items-center justify-center gap-1.5 mt-0.5">
+              <span className="text-gray-400 text-xs">{getStatusText(discordData?.discord_status || 'offline')}</span>
+              <span className="text-gray-600 text-xs">•</span>
+              <span className="text-gray-400 text-xs">Desenvolvedor Full Stack</span>
             </div>
           </div>
         </div>
 
         {/* Seção Sobre Mim */}
-        <div className="w-full border-t border-[#1a1a1a] pt-4 mt-2">
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-3 text-center">Sobre Mim</h2>
-          <p className="text-gray-300 text-center text-sm md:text-base leading-relaxed mb-4 max-w-2xl mx-auto">
+        <div className="w-full border-t border-[#1a1a1a] pt-3 mt-1.5">
+          <h2 className="text-lg md:text-xl font-bold text-white mb-2 text-center">Sobre Mim</h2>
+          <p className="text-gray-300 text-center text-xs md:text-sm leading-relaxed mb-3 max-w-2xl mx-auto">
             Desenvolvedor apaixonado por criar soluções inovadoras e eficientes. 
             Especializado em desenvolvimento web moderno com foco em experiência do usuário e performance. 
             Trabalho principalmente com tecnologias JavaScript/TypeScript e tenho experiência significativa 
             com bots do Discord e aplicações web.
           </p>
           
-          <div className="mt-4">
-            <h3 className="text-lg font-semibold text-white mb-3 text-center">Habilidades</h3>
-            <div className="flex flex-wrap justify-center gap-2">
+          <div className="mt-3">
+            <h3 className="text-base font-semibold text-white mb-2 text-center">Habilidades</h3>
+            <div className="flex flex-wrap justify-center gap-1.5">
               {skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-[#0a0a0a] text-[#00ff87] rounded-full text-xs font-semibold border border-[#1a1a1a] hover:border-[#00ff87] hover:shadow-lg hover:shadow-[#00ff87]/10 transition-all duration-300 animate-scale-in"
+                  className="px-2.5 py-0.5 bg-[#0a0a0a] text-[#00ff87] rounded-full text-xs font-semibold border border-[#1a1a1a] hover:border-[#00ff87] hover:shadow-lg hover:shadow-[#00ff87]/10 transition-all duration-300 animate-scale-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {skill}
@@ -252,50 +252,50 @@ const Home: React.FC = () => {
         </div>
 
         {/* Seção Spotify/Música */}
-        <div className="w-full border-t border-[#1a1a1a] pt-4 mt-2">
-          <h2 className="text-lg md:text-xl font-bold text-white mb-4 text-center font-mono">
+        <div className="w-full border-t border-[#1a1a1a] pt-3 mt-1.5">
+          <h2 className="text-base md:text-lg font-bold text-white mb-3 text-center font-mono">
             <span className="font-bold">Ouvindo</span> <span className="font-normal">Agora</span>
           </h2>
           {discordData?.spotify && discordData.spotify.song ? (
-            <div className="flex flex-col md:flex-row items-center md:items-start w-full max-w-2xl mx-auto gap-4 p-4 bg-[#0a0a0a]/80 rounded-xl border border-[#1a1a1a] hover:border-[#00ff87]/30 transition-all duration-300 animate-slide-in-left">
+            <div className="flex flex-col md:flex-row items-center md:items-start w-full max-w-2xl mx-auto gap-3 p-3 bg-[#0a0a0a]/80 rounded-lg border border-[#1a1a1a] hover:border-[#00ff87]/30 transition-all duration-300 animate-slide-in-left">
               <div className="relative group">
                 <img
                   src={discordData.spotify.album_art_url}
                   alt={discordData.spotify.album}
-                  className="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover border-2 border-[#1a1a1a] shadow-xl transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[#00ff87]/15"
+                  className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover border-2 border-[#1a1a1a] shadow-xl transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[#00ff87]/15"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#00ff87]/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
               <div className="flex-1 flex flex-col justify-center w-full md:w-auto text-center md:text-left">
-                <div className="text-white font-extrabold text-lg md:text-xl truncate mb-1 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                <div className="text-white font-extrabold text-base md:text-lg truncate mb-0.5 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   {discordData.spotify.song}
                 </div>
-                <div className="text-gray-300 text-sm md:text-base truncate font-semibold mb-1">
+                <div className="text-gray-300 text-xs md:text-sm truncate font-semibold mb-0.5">
                   {discordData.spotify.artist}
                 </div>
-                <div className="text-gray-500 text-xs md:text-sm truncate mb-3">
+                <div className="text-gray-500 text-xs truncate mb-2">
                   {discordData.spotify.album}
                 </div>
                 <SpotifyProgressBar timestamps={discordData.spotify.timestamps} />
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto py-8 opacity-70 animate-fadeInUp">
-              <div className="w-16 h-16 mb-3 rounded-full bg-[#0a0a0a] flex items-center justify-center border-2 border-[#1a1a1a]">
-                <svg width="32" height="32" fill="none" viewBox="0 0 24 24" className="text-gray-400">
+            <div className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto py-6 opacity-70 animate-fadeInUp">
+              <div className="w-14 h-14 mb-2 rounded-full bg-[#0a0a0a] flex items-center justify-center border-2 border-[#1a1a1a]">
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24" className="text-gray-400">
                   <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Zm-2-7v-2a2 2 0 1 1 4 0v2m-6 0h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-              <span className="text-gray-400 text-sm md:text-base font-medium text-center">
+              <span className="text-gray-400 text-xs md:text-sm font-medium text-center">
                 Nenhuma música tocando no momento.<br/>
-                <span className="text-gray-500 text-xs md:text-sm">Provavelmente está trabalhando ou descansando.</span>
+                <span className="text-gray-500 text-xs">Provavelmente está trabalhando ou descansando.</span>
               </span>
             </div>
           )}
           
           {/* Histórico de Músicas */}
           {history.length > 0 && (
-            <div className="mt-4">
+            <div className="mt-3">
               <MusicHistory history={history} maxItems={5} />
             </div>
           )}
@@ -303,7 +303,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Footer */}
-      <footer className="text-center text-gray-500 text-xs mt-2 mb-2 tracking-wide animate-fadeIn">
+      <footer className="text-center text-gray-500 text-xs mt-1 mb-1 tracking-wide animate-fadeIn">
         © 2025 Victor. Todos os direitos reservados.
       </footer>
     </div>
