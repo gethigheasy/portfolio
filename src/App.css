@@ -23,6 +23,7 @@
   margin-bottom: 1rem;
   background: none;
   color: #e5e7eb;
+  background-clip: unset;
   -webkit-background-clip: unset;
   -webkit-text-fill-color: unset;
 }
@@ -410,7 +411,6 @@ img[src*="girlfriend"] {
   -khtml-user-drag: none !important;
   -moz-user-drag: none !important;
   -o-user-drag: none !important;
-  user-drag: none !important;
   pointer-events: none !important;
   user-select: none !important;
   -webkit-user-select: none !important;
